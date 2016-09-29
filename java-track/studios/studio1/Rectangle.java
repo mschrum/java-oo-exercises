@@ -42,6 +42,8 @@ public class Rectangle {
 		Rectangle r1 = new Rectangle(3,2);
 		Rectangle r2 = new Rectangle (3,3);
 		r1.compareArea(r2);
+		System.out.println(r1);
+		System.out.println(r2);
 	}
 
 }
