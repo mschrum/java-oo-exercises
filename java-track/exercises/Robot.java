@@ -77,7 +77,7 @@ public class Robot {
 		this.orientation=newOrientation;
 	}
 	//calc distance from another robot
-	public void distance (Robot r2) {
+	public double distance (Robot r2) {
 		double diffX = Math.abs(r2.getxPosition() - this.xPosition);
 		double diffY = Math.abs(r2.getyPosition() - this.yPosition);
 		double dX2= Math.pow(diffX, 2);
@@ -85,6 +85,7 @@ public class Robot {
 		double sum = dY2 + dX2;
 		double distance = Math.round(Math.sqrt(sum)*100)/100.00;
 		System.out.println("The distance between " + this.name +"'s robot and " + r2.getName() + "'s robot is " + distance );
+		return distance;
 	}
 	//To String
 	public String toString(){
