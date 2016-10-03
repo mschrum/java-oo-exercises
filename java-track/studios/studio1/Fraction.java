@@ -27,8 +27,10 @@ public class Fraction {
 	
 	//add
 	public Fraction add(Fraction f2) {
-		int newNum=this.numerator+f2.getNumerator();
-		int newDen=this.denominator+f2.getDenominator();
+		int firstNum=this.numerator*f2.getDenominator();
+		int secondNum=f2.getNumerator()*this.denominator;
+		int newDen=f2.getDenominator()*this.denominator;
+		int newNum=firstNum+secondNum;
 		Fraction newFraction=new Fraction(newNum,newDen);
 		return newFraction;
 	}
@@ -48,8 +50,8 @@ public class Fraction {
 		return this.numerator + "/" + this.denominator;
 	}
 	public static void main(String[] args) {
-		Fraction f1 = new Fraction(1,4);
-		Fraction f2 = new Fraction(3,4);
+		Fraction f1 = new Fraction(1,2);
+		Fraction f2 = new Fraction(1,2);
 		System.out.println("A fraction " + f1);
 		System.out.println("Another fraction " + f2);
 		System.out.println("The sum of " + f1 + " and " + f2 + " is: " + f1.add(f2));

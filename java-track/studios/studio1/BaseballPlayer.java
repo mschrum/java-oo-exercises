@@ -21,7 +21,39 @@ public class BaseballPlayer {
 		this.numRBIseason = numRBIseason;
 		this.numPlayed = numPlayed;
 	}
-	
+		
+	public String getName() {
+		return name;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public String getBatSide() {
+		return batSide;
+	}
+
+	public int getNumHgame() {
+		return numHgame;
+	}
+
+	public int getNumHseason() {
+		return numHseason;
+	}
+
+	public int getNumRBIgame() {
+		return numRBIgame;
+	}
+
+	public int getNumRBIseason() {
+		return numRBIseason;
+	}
+
+	public int getNumPlayed() {
+		return numPlayed;
+	}
+
 	public void hit () {
 		this.numHgame+=1;
 		this.numHseason+=1;

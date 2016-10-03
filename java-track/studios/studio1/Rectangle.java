@@ -25,14 +25,17 @@ public class Rectangle {
 			return true;
 		}
 	}
-	public void compareArea(Rectangle r2) {
+	public String compareArea(Rectangle r2) {
 		if (this.getArea()>r2.getArea()) {
 			System.out.println ("R1 is larger");
+			return "First";
 		}
 		else if (this.getArea()<r2.getArea()) {
 			System.out.println("R2 is larger");
+			return "Second";
 		}
 		else System.out.println("The rectangle's are is equal");	
+		return "Equal";
 	}
 	public String toString () {
 		return "It is " + this.isSquare() + " that this rectangle is a square.";
