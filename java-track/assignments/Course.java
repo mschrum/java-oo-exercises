@@ -1,78 +1,80 @@
 
 public class Course {
-	
 	private String name;
 	private int credits;
 	private int remainingSeats;
-	private Student[] roster;
-	
-	public Course(String name, int credits, int numberOfSeats) {
-		this.roster = new Student[numberOfSeats];
+	private Student [] studentRoster;
+
+	public Course(String name, int credits, int remainingSeats) {
 		this.name = name;
 		this.credits = credits;
-		this.remainingSeats = numberOfSeats;
+		this.remainingSeats = remainingSeats;
+		this.studentRoster= new Student[this.remainingSeats];
 	}
-	
+
 	public String getName() {
 		return name;
 	}
+
 	public int getCredits() {
 		return credits;
 	}
+
+	public void setCredits(int credits) {
+		this.credits = credits;
+	}
+
 	public int getRemainingSeats() {
 		return remainingSeats;
 	}
-	public Student[] getRoster() {
+
+
+	public Student [] getStudentRoster() {
+		return studentRoster;
+	}
+
+	public boolean addStudent(Student s){
+		if (this.remainingSeats>0) {
+			for (int i=0; i<studentRoster.length; i++){
+				if (studentRoster[i]!=null){
+					if (s.getName()==(studentRoster[i].getName())){
+						return false;
+					}
+				}
+			}
+			studentRoster[this.remainingSeats-1]=s;
+			this.remainingSeats-=1;
+			return true;
+		}
+		return false;
+	}
+
+	public String generateRoster(){
+		String roster="";
+		for (int i=0; i<studentRoster.length; i++){
+			if (studentRoster[i]!=null){
+				roster += studentRoster[i].getName();
+			}
+		}
 		return roster;
 	}
 	
-	public Boolean addStudent(Student newStudent) {
-		
-		if (this.remainingSeats == 0) {
-			return false;
-		}
-		
-		// check to make sure student hasn't already enrolled
-		for (int i = 0; i < roster.length; i++) {
-			if (roster[i] != null && roster[i].getName() == newStudent.getName()) {
-				return false;
+	public double averageGPA(){
+		double totGPA = 0;
+		int totalStudents=0;
+		for (int i=0; i<studentRoster.length; i++) {
+			if (this.studentRoster[i]!=null){
+				totGPA+=studentRoster[i].getGPA();
+				totalStudents+=1;
 			}
 		}
-		
-		roster[roster.length - this.remainingSeats] = newStudent;
-		remainingSeats--;
-		
-		return true;		
+		double avgGPA = Math.round((totGPA/totalStudents)*100.00)/100.00;
+		return avgGPA;
 	}
-	
-	public double averageGPA() {
-		
-		double sum = 0.0;
-		int numberOfStudents = 0;
-		for (int i = 0; i < roster.length; i++) {
-			if (roster[i] != null) {
-				sum += roster[i].getGPA();
-				numberOfStudents++;
-			}
-		}
-		
-		return sum / numberOfStudents;
-	}
-	
-	public String generateRoster() {
-		
-		String rosterString = "";
-		for (int i = 0; i < roster.length; i++) {
-			if (roster[i] != null) {
-				rosterString = rosterString + roster[i].getName() + "\n";
-			}
-		}
-		
-		return rosterString;		
-	}
-	
+
 	public String toString() {
-		return this.name + "(" + this.credits + ")";
+		return name + " " + credits;
 	}
-	
+
+
 }
