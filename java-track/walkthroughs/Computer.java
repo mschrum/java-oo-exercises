@@ -2,7 +2,7 @@
 public class Computer {
 	//Has-a
 	private int memory;
-	private double size;
+	protected double size;
 	private double processor;
 	private String brand;
 
