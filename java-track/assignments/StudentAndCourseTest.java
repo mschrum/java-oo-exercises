@@ -1,6 +1,4 @@
-import static org.junit.Assert.*;
-
-
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -224,7 +222,7 @@ public class StudentAndCourseTest extends TestCase {
 
 			ss.submitGrade(g2, c2);
 
-			Student bb = s.createLegacy(s, ss);
+			Student bb = Student.createLegacy(s, ss);
 
 			assertTrue("create baby not setting name properly", bb.getName().contains(s.getName()) && bb.getName().contains(ss.getName()));
 
@@ -454,10 +452,16 @@ public class StudentAndCourseTest extends TestCase {
 
 	}
 
+	@Test
 
-
-
-
-
-
+	public void testGetAllCourses() {
+		Course c = new Course("CSE131", 1, 2);
+		Course d = new Course("CSE231", 2, 2);
+		Course e = new Course("CSE331", 3, 2);
+		ArrayList <String> allCoursesReturned = new ArrayList<String>();
+		allCoursesReturned = Course.getAllCourses();
+		for (int i=0; i<allCoursesReturned.size(); i++){
+			System.out.println(allCoursesReturned.get(i));
+		}
+	}
 }

@@ -27,5 +27,31 @@ public class RobotTester {
 	Robot a = new Robot("John", 2, 0, 3);
 	assertTrue ("Problem measuring distance between robots", r.distance(a)==5);	
 	}
+	
+	@Test
+	public void testCarry() {
+	CarryRobot r = new CarryRobot("Melissa", 2, 4, 0,"North");
+	String item="Orange";
+	r.pickUp(item);
+	assertEquals ("Problem picking up item", r.getItem(),item);
+	item="Apple";
+	r.pickUp(item);
+	assertEquals ("Problem picking up item", r.getItem(),item);
+	r.putDown();
+	assertEquals ("Problem putting down item", r.getItem(),"");
+	}
+	
+	@Test
+	public void testAttack() {
+	AttackRobot r = new AttackRobot("Melissa", 2, 4, 0,"North");
+	Robot s = new Robot("John", 2, 0, 3);
+	r.causeDamage(s);
+	assertEquals ("Problem causing damage to s", s.getHP(),19);
+	r.setAttackPower(4);
+	r.causeDamage(s);
+	assertEquals ("Problem causing damage to s", s.getHP(),15);
+	r.causeDamage(r);
+	assertEquals ("Problem causing damage to self", r.getHP(),16);
+	}
 
 }

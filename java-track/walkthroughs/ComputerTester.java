@@ -19,5 +19,16 @@ public class ComputerTester {
 		c.addMemory(2);
 		assertTrue ("Problem adding memory when hit max", c.getMemory()==8);
 	}
+	
+	@Test
+	public void testInvalidMemory(){
+		try{
+			Computer c =  new Computer(-8,100, 100, "Lenovo");
+			fail("Exception was not thrown for Invalid value");
+		}
+		catch(IllegalArgumentException e){
+			assertTrue(true);
+		}
+	}
 
 }

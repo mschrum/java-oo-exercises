@@ -1,15 +1,22 @@
+import java.util.ArrayList;
 
 public class Course {
 	private String name;
 	private int credits;
 	private int remainingSeats;
 	private Student [] studentRoster;
+	private static final ArrayList <String> allCourses = new ArrayList<String>();
 
 	public Course(String name, int credits, int remainingSeats) {
 		this.name = name;
 		this.credits = credits;
 		this.remainingSeats = remainingSeats;
 		this.studentRoster= new Student[this.remainingSeats];
+		allCourses.add(this.name);
+	}
+	
+	public static ArrayList<String> getAllCourses(){
+		return Course.allCourses;
 	}
 
 	public String getName() {

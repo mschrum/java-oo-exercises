@@ -71,7 +71,7 @@ public class Student {
 		return tuition;
 	}
 	
-	public Student createLegacy(Student s1, Student s2){
+	public static Student createLegacy(Student s1, Student s2){
 		String fname=s1.getName();
 		String lname=s2.getName();
 		int studentID= s1.getStudentID()+s2.getStudentID();

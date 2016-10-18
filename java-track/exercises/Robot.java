@@ -5,6 +5,8 @@ public class Robot {
 	private int xPosition;
 	private int yPosition;
 	private String orientation;
+	private int HP;
+	private RobotBehavior behavior;
 
 	public Robot(String name, int speed, int xPosition, int yPosition, String orientation){
 		this.name=name;
@@ -12,6 +14,7 @@ public class Robot {
 		this.xPosition=xPosition;
 		this.yPosition=yPosition;
 		this.orientation=orientation;
+		this.HP=20;
 	}
 	public Robot(String name, int speed, int xPosition, int yPosition){
 		this.name=name;
@@ -19,6 +22,7 @@ public class Robot {
 		this.xPosition=xPosition;
 		this.yPosition=yPosition;
 		this.orientation="East";
+		this.HP=20;
 	}
 	//Getters
 	public String getName (){
@@ -35,6 +39,27 @@ public class Robot {
 	}
 	public String getOrientation(){
 		return this.orientation;
+	}
+	public int getHP(){
+		return this.HP;
+	}
+	public void setHP(int HP){
+		this.HP=HP;
+	}
+	
+	//RobotBehavior Interface interaction
+	public RobotBehavior getBehavior(){
+		return this.behavior;	
+	}	
+	public void setBehavior(RobotBehavior behavior){
+		this.behavior=behavior;	
+	}
+	public void fightMove(){
+		System.out.println(this.name + ": Based on current position " +
+					 "the behaviour object decide the next move:");
+		int command = behavior.doNextMove();
+		// ... send the command to mechanisms
+		System.out.println("\tThe result returned by behaviour object is sent to the movement mechanisms for the robot "  + this.name);
 	}
 	//can move
 	public void move (int newSpeed) {
@@ -87,26 +112,32 @@ public class Robot {
 		System.out.println("The distance between " + this.name +"'s robot and " + r2.getName() + "'s robot is " + distance );
 		return distance;
 	}
+	
 	//To String
 	public String toString(){
 		return "Name: " + this.name + " Speed: " + this.speed + " Position: " + this.xPosition + "," + this.yPosition + " Orientation: " + this.orientation;
 	}
 	public static void main(String[] args) {
-		Robot myRobot = new Robot("Melissa", 2, 0, 3, "north");
-		Robot yourRobot = new Robot("John", 1, 0, 0, "West");
-		System.out.println(myRobot);
-		myRobot.move(3);
-		System.out.println(myRobot);
-		myRobot.rotate("South");
-		myRobot.move(2);
-		System.out.println(myRobot);
-		myRobot.move();
-		System.out.println(myRobot);
-		myRobot.rotate("west");
-		myRobot.move(1);
-		System.out.println(myRobot);
-		System.out.println(yourRobot);
-		myRobot.distance(yourRobot);
+		Robot r1 = new Robot("Mike",2,3,4);
+		Robot r2 = new Robot("George",3,2,1);
+
+		r1.setBehavior(new AggressiveBehavior());
+		r2.setBehavior(new DefensiveBehavior());
+		
+		r1.fightMove();
+		r2.fightMove();
+		
+
+		System.out.println("\r\nNew behaviours: " +
+				"\r\n\tMike gets really scared" +
+				"\r\n\tGeorge becomes really mad because" +
+				"it's always attacked by other robots");
+
+		r1.setBehavior(new AggressiveBehavior());
+		r2.setBehavior(new DefensiveBehavior());
+
+		r1.fightMove();
+		r2.fightMove();
 	}
 
 }
