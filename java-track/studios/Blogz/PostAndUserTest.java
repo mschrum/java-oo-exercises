@@ -26,6 +26,8 @@ private static boolean initialized = false;
 		b = new User ("Jacob", "Boo");
 		assertEquals("Melissa", a.getUserName());
 		assertEquals("Password", a.getPassword());	
+		assertTrue(a.equals(a));
+		assertFalse(a.equals(b));
 	}
 
 	@Test

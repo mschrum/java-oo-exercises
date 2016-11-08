@@ -283,7 +283,17 @@ public class StudentAndCourseTest extends TestCase {
 
 	}
 
+	@Test
 
+	public void testStudentEquality() {
+
+		Student s = new Student("D", "S", 1);
+		Student t = new Student("D", "S", 1);
+		Student u = new Student("P", "X", 1);
+		assertTrue(s.equals(t));
+		assertTrue(t.equals(s));
+		assertFalse(t.equals(u));
+	}
 
 
 
@@ -464,5 +474,18 @@ public class StudentAndCourseTest extends TestCase {
 		for (int i=0; i<allCoursesReturned.size(); i++){
 			System.out.println(allCoursesReturned.get(i));
 		}
+	}
+	
+	@Test
+
+	public void testCourseEquality() {
+
+		Course c = new Course("CSE131", 1, 2);
+		Course d = new Course("CSE131", 1, 2);
+		Course e = new Course("CSE246", 1, 2);
+		assertTrue(c.equals(d));
+		assertTrue(d.equals(c));
+		assertFalse(c.equals(e));
+		
 	}
 }

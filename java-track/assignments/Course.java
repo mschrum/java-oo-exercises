@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Course {
 	private String name;
@@ -83,5 +84,27 @@ public class Course {
 		return name + " " + credits;
 	}
 
+	@Override
+	public boolean equals(Object c){
+		
+		//self check
+		if (this == c)
+			return true;
+		
+		if (c == null)
+			return false;
+		
+		
+		//type check and cast
+		if(getClass()!=c.getClass())
+			return false;
+		
+		
+		Course course = (Course) c;
+		
+		//field comparison
+		return Objects.equals(name, course.getName()) && Objects.equals(credits, course.getCredits());		
+		
+	}
 
 }
